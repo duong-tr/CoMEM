@@ -144,11 +144,16 @@ if __name__ == "__main__":
     data_path = "CoMEM-inference/ReasonVQA/reasonvqa_filtered.jsonl"
 
     # Read the input JSONL file
-    print('Read the input JSONL file')
-    batch_data = load_mds(data_path)
-    with open(data_path, 'r') as f:
-        lang_batch_data = [json.loads(line) for line in f]
-        lang_batch_data = {lang_item['question_id']: lang_item for lang_item in lang_batch_data}
+    # print('Read the input JSONL file')
+    # batch_data = load_mds(data_path)
+    # with open(data_path, 'r') as f:
+    #     lang_batch_data = [json.loads(line) for line in f]
+    #     lang_batch_data = {lang_item['question_id']: lang_item for lang_item in lang_batch_data}
+
+    import pandas as pd
+    batch_data = pd.read_json(data_path, lines=True).to_dict(orient='records')
+    batch_data['data_id'] = batch_data['question_id']
+    lang_batch_data = {lang_item['data_id']: lang_item for lang_item in batch_data}
 
     # double check data exists:
     not_exist = []
@@ -157,7 +162,7 @@ if __name__ == "__main__":
     for idx, item in enumerate(batch_data):
         if idx % 10000 == 0:
             print(f"Processing {idx}/{len(batch_data)}")
-        qid = item['question_id']
+        qid = item['data_id']
         path = os.path.join(args.ds_root_dir, item['image_path'])
         # check path exists
         if not os.path.exists(path):

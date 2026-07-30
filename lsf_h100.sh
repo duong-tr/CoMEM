@@ -8,6 +8,7 @@
 #BSUB -gpu "num=1"                # Specify the number of GPUs
 #BSUB -R "span[hosts=1]"          # run on a single host
 #BSUB -q batch_h100
+#BSUB -P BH-000205-04
 
 # Receive email notifications.  Specify when to receive emails.
 #BSUB -u Duong.Tran@de.bosch.com        # Specify the email address for notifications

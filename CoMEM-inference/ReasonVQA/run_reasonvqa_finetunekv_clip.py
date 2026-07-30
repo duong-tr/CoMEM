@@ -12,7 +12,7 @@ import argparse
 from tqdm import tqdm
 import time
 sys.path.insert(0, "CoMEM-inference")
-from src.load_model_test import *
+from src.load_model_test import generate_response_knowledge
 
 from io import BytesIO
 from streaming import StreamingDataset
@@ -20,8 +20,6 @@ import base64
 from tqdm import tqdm
 from pathlib import Path
 
-
-DS_ROOT_DIR = Path('E:/Code/PhD/EKVQA')
 
 def load_mds(mds_dir):
     dataset = StreamingDataset(local=mds_dir,

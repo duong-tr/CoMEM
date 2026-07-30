@@ -1,8 +1,6 @@
 from transformers import AutoTokenizer, LlavaNextProcessor, LlavaNextForConditionalGeneration, LlavaForConditionalGeneration, AutoModelForCausalLM
 from transformers import Qwen2_5_VLForConditionalGeneration, Qwen2VLForConditionalGeneration, AutoProcessor
 import torch
-from PIL import Image
-import requests
 import numpy as np
 import os
 import sys
@@ -11,12 +9,9 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.utils import auto_configure_device_map
 from accelerate import dispatch_model
 from llava.model.builder import load_pretrained_model
-from llava.mm_utils import get_model_name_from_path, process_images, tokenizer_image_token
-from llava.constants import IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN, IGNORE_INDEX
-from llava.conversation import conv_templates, SeparatorStyle
-import matplotlib.pyplot as plt
-import torchvision.transforms as transforms
-import torch.nn as nn
+from llava.mm_utils import process_images, tokenizer_image_token
+from llava.constants import IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN
+from llava.conversation import conv_templates
 from qwen_vl_utils import process_vision_info
 module_path = "CoMEM-train"
 sys.path.insert(0, module_path)

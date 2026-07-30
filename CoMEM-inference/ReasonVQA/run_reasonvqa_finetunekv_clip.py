@@ -18,7 +18,7 @@ from io import BytesIO
 from streaming import StreamingDataset
 import base64 
 from tqdm import tqdm
-from pathlib import Path
+from transformers import AutoProcessor
 
 
 def load_mds(mds_dir):

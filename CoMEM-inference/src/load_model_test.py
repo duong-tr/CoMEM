@@ -17,7 +17,7 @@ module_path = "CoMEM-train"
 sys.path.insert(0, module_path)
 from src_vlm.process_data import knowledge_processor as knowledge_processor_vlm
 from src_llm.process_data import knowledge_processor as knowledge_processor_llm
-from src_distill_llm.process_data import knowledge_processor as knowledge_processor_distill_llm
+# from src_distill_llm.process_data import knowledge_processor as knowledge_processor_distill_llm
 
 
 def load_model(model_name, model_path, max_memory=None):
@@ -441,16 +441,16 @@ def generate_response_knowledge(model_name, processor, model, image, prompt, kno
         images=image_inputs,
         return_tensors="pt",
     ).to("cuda")
-    if 'distill' in model_name:
-        inputs_with_knowledge = knowledge_processor_distill_llm(
-            processor=processor,
-            inputs=inputs,
-            texts=knowlegde_texts,
-            images=knowlegde_images,
-            tokenizer=tokenizer,
-            formatted_prompt=formatted_prompt
-        ).to("cuda")
-    elif 'llm' in model_name:
+    # if 'distill' in model_name:
+    #     inputs_with_knowledge = knowledge_processor_distill_llm(
+    #         processor=processor,
+    #         inputs=inputs,
+    #         texts=knowlegde_texts,
+    #         images=knowlegde_images,
+    #         tokenizer=tokenizer,
+    #         formatted_prompt=formatted_prompt
+    #     ).to("cuda")
+    if 'llm' in model_name:
         inputs_with_knowledge = knowledge_processor_llm(
             processor=processor,
             inputs=inputs,

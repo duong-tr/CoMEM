@@ -273,3 +273,4 @@ zc.lockfile==3.0.post1
 zipp==3.21.0
 zstandard==0.22.0
 huggingface_hub
+mosaicml-streaming

@@ -81,7 +81,7 @@ def process_images_in_batches(batch_data, question_ids, batch_size, prompt, args
                     max_memory=max_memory,
                     low_cpu_mem_usage=True)
     
-    print("Generate predictions...")
+    print("Generate predictions for", len(batch_data), "samples...")
     # Process images in batches
     for idx, i in enumerate(range(0, len(batch_data), batch_size)):
         if (idx + 1) % 100 == 0:

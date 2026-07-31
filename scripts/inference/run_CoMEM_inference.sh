@@ -21,7 +21,7 @@ MODEL_NAME='qwen2.5'
 SCRIPT_PATH="CoMEM-inference/ReasonVQA/run_reasonvqa_finetunekv_clip.py"
 OUTPUT_DIR="CoMEM-inference/ReasonVQA/output" # Change this to your desired output directory
 SIMILAR_NUM=10 # Number of relevant image-text pairs to retrieve
-DS_ROOT_DIR="../../../EKVQA" # Change this to your dataset root directory
+DS_ROOT_DIR="/fs/scratch/rb_bd_dlp_rng_dl01_cr_ICT_employees/trh7rng/EKVQA" # Change this to your dataset root directory
 
 # auto download checkpoint if not exists
 checkpoint_is_complete() {

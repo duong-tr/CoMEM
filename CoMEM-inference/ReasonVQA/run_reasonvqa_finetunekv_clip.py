@@ -67,7 +67,7 @@ def process_images_in_batches(batch_data, question_ids, batch_size, prompt, args
                     checkpoint_path,
                     torch_dtype=torch.bfloat16,
                     attn_implementation="flash_attention_2",
-                    device_map="auto",
+                    device_map=0,
                     max_memory=max_memory,
                     low_cpu_mem_usage=True)
     elif 'qwen2' in args.model_name:
@@ -79,7 +79,7 @@ def process_images_in_batches(batch_data, question_ids, batch_size, prompt, args
                     checkpoint_path,
                     torch_dtype=torch.bfloat16,
                     attn_implementation="flash_attention_2",
-                    device_map="auto",
+                    device_map=0,
                     max_memory=max_memory,
                     low_cpu_mem_usage=True)
     

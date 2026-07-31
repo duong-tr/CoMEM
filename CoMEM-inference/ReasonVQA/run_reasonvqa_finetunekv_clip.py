@@ -67,7 +67,7 @@ def process_images_in_batches(batch_data, question_ids, batch_size, prompt, args
                     checkpoint_path,
                     torch_dtype=torch.bfloat16,
                     attn_implementation="flash_attention_2",
-                    device_map=0,
+                    device_map="auto",
                     max_memory=max_memory,
                     low_cpu_mem_usage=True)
     elif 'qwen2' in args.model_name:
@@ -79,7 +79,7 @@ def process_images_in_batches(batch_data, question_ids, batch_size, prompt, args
                     checkpoint_path,
                     torch_dtype=torch.bfloat16,
                     attn_implementation="flash_attention_2",
-                    device_map=0,
+                    device_map="auto",
                     max_memory=max_memory,
                     low_cpu_mem_usage=True)
     
@@ -170,18 +170,19 @@ if __name__ == "__main__":
         path = os.path.join(args.ds_root_dir, item['image_path'])
         # check path exists
         if not os.path.exists(path):
+            print(f"Image path does not exist: {path}")
             not_exist.append(qid)
         else:
             clean_batch_data.append(item)
             clean_question_ids.append(qid)
+
     print(len(not_exist))
-    # setup device to use
-    device = torch.device("cuda") if torch.cuda.is_available() else "cpu"
+    print("Number of valid samples: ", len(clean_batch_data))
             
     # Desired batch size
     batch_size = args.batch_size
 
-    PROMPT =  """Question: {} 
+    PROMPT = """Question: {} 
     For this question, please reference to the given information and perform step-by-step reasoning, to obtain the final answer. 
     Note that the final answer should be formatted as:
     Reasoning Process: all thinking steps

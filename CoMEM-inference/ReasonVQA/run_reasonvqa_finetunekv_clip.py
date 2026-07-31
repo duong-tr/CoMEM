@@ -180,15 +180,11 @@ if __name__ == "__main__":
     # Desired batch size
     batch_size = args.batch_size
 
-    templa_dict = {
-        "val": """Question: {} 
+    PROMPT =  """Question: {} 
     For this question, please reference to the given information and perform step-by-step reasoning, to obtain the final answer. 
     Note that the final answer should be formatted as:
     Reasoning Process: all thinking steps
     Final answer: \\boxed{{your short answer here}}"""
-    }
-    
-    PROMPT = templa_dict[args.split]
     
     # Run the batch processing function
     output = process_images_in_batches(clean_batch_data, clean_question_ids, batch_size, prompt=PROMPT, args=args)

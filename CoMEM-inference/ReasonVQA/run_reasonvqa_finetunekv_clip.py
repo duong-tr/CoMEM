@@ -62,7 +62,6 @@ def process_images_in_batches(batch_data, question_ids, batch_size, prompt, args
     if 'qwen2.5' in args.model_name:
         checkpoint_path = args.checkpoint_path
         processor = AutoProcessor.from_pretrained("Qwen/Qwen2.5-VL-7B-Instruct", use_fast=True)
-        tokenizer = processor.tokenizer
         model = Qwen2_5_VLForConditionalGeneration_new.from_pretrained(
                     checkpoint_path,
                     torch_dtype=torch.bfloat16,
@@ -74,7 +73,6 @@ def process_images_in_batches(batch_data, question_ids, batch_size, prompt, args
         checkpoint_path = args.checkpoint_path
         print('load qwen2 model')
         processor = AutoProcessor.from_pretrained("Qwen/Qwen2-VL-7B-Instruct", use_fast=True)
-        tokenizer = processor.tokenizer
         model = Qwen2VLForConditionalGeneration_new.from_pretrained(
                     checkpoint_path,
                     torch_dtype=torch.bfloat16,
@@ -157,6 +155,7 @@ if __name__ == "__main__":
     for item in batch_data:
         item['data_id'] = item['question_id']
         del item['question_id']
+        item['image_path'] = str(Path(args.ds_root_dir) / item['image_path'])
     lang_batch_data = {lang_item['data_id']: lang_item for lang_item in batch_data}
 
     # double check data exists:
@@ -167,7 +166,7 @@ if __name__ == "__main__":
         if idx % 10000 == 0:
             print(f"Processing {idx}/{len(batch_data)}")
         qid = item['data_id']
-        path = os.path.join(args.ds_root_dir, item['image_path'])
+        path = item['image_path']
         # check path exists
         if not os.path.exists(path):
             print(f"Image path does not exist: {path}")

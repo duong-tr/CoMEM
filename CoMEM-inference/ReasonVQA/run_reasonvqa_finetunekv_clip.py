@@ -154,7 +154,7 @@ if __name__ == "__main__":
     batch_data = pd.read_json(data_path, lines=True).to_dict(orient='records')
     # rename column 'question_id' to 'data_id'
     for item in batch_data:
-        item['data_id'] = item.pop('question_id')
+        item['data_id'] = item['question_id']
         del item['question_id']
     lang_batch_data = {lang_item['data_id']: lang_item for lang_item in batch_data}
 

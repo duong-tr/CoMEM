@@ -19,6 +19,7 @@ from streaming import StreamingDataset
 import base64 
 from tqdm import tqdm
 from transformers import AutoProcessor
+from pathlib import Path
 
 
 def load_mds(mds_dir):
@@ -188,6 +189,8 @@ if __name__ == "__main__":
     
     # Run the batch processing function
     output = process_images_in_batches(clean_batch_data, clean_question_ids, batch_size, prompt=PROMPT, args=args)
+
+    Path(args.output_dir).mkdir(parents=True, exist_ok=True)
 
     # save output into jsonl
     with open(os.path.join(args.output_dir, "{}_{}_{}.jsonl".format(

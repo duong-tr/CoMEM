@@ -62,7 +62,7 @@ fi
 
 chmod +x $SCRIPT_PATH
 echo "Running finetune CoMEM inference..."
-CUDA_VISIBLE_DEVICES=0 python $SCRIPT_PATH --model_name MODEL_NAME --output_dir $OUTPUT_DIR --similar_num $SIMILAR_NUM --checkpoint_path $CHECKPOINT_PATH --ds_root_dir $DS_ROOT_DIR
+CUDA_VISIBLE_DEVICES=0 python $SCRIPT_PATH --model_name $MODEL_NAME --output_dir $OUTPUT_DIR --similar_num $SIMILAR_NUM --checkpoint_path $CHECKPOINT_PATH --ds_root_dir $DS_ROOT_DIR
 
 echo "All runs completed!"
 
@@ -72,4 +72,4 @@ echo "All runs completed!"
 # OUTPUT_DIR="CoMEM-inference/OVEN/output" 
 # chmod +x $SCRIPT_PATH
 # echo "Running baseline inference..."
-# CUDA_VISIBLE_DEVICES=0 python $SCRIPT_PATH --model_name MODEL_NAME --output_dir $OUTPUT_DIR --split $SPLIT --similar_num $SIMILAR_NUM --checkpoint_path $CHECKPOINT_PATH
+# CUDA_VISIBLE_DEVICES=0 python $SCRIPT_PATH --model_name $MODEL_NAME --output_dir $OUTPUT_DIR --split $SPLIT --similar_num $SIMILAR_NUM --checkpoint_path $CHECKPOINT_PATH

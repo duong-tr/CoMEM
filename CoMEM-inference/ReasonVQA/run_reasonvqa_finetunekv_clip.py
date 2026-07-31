@@ -42,7 +42,7 @@ def load_and_process_image(item):
 def process_images_in_batches(batch_data, question_ids, batch_size, prompt, args):
     ########## Get output saving path ###########
     file_path = os.path.join(args.output_dir, "{}_{}_{}_{}.jsonl".format(
-                    args.model_name, args.model_type, args.split, args.similar_num
+                    args.model_name, args.model_type, args.similar_num
                     ))
     # Check if the file exists
     if os.path.exists(file_path):
@@ -191,7 +191,7 @@ if __name__ == "__main__":
 
     # save output into jsonl
     with open(os.path.join(args.output_dir, "{}_{}_{}_{}.jsonl".format(
-                args.model_name, args.model_type, args.split, args.similar_num
+                args.model_name, args.model_type, args.similar_num
                 )), 'w') as f:
         for item in output:
             f.write(json.dumps(item, ensure_ascii=False) + "\n")

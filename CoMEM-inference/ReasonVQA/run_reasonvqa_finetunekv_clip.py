@@ -155,7 +155,7 @@ if __name__ == "__main__":
     for item in batch_data:
         item['data_id'] = item['question_id']
         del item['question_id']
-        item['image_path'] = str(Path(args.ds_root_dir) / item['image_path'])
+        item['image_path'] = str(Path(args.ds_root_dir) / item['image_path']).replace("\\", "/")
     lang_batch_data = {lang_item['data_id']: lang_item for lang_item in batch_data}
 
     # double check data exists:
